@@ -356,7 +356,8 @@ class caffe():
         for i in range(1, len(self.rain)):
             name = self.StepSimulationROG(i)
             self.ReportFile(name)
-            self.Reset_WL_EVM()
+            self.water_levels = deepcopy(self.DEM)
+            self.excess_volume_map = np.zeros_like(self.DEM, dtype=np.double)
 
     def StepSimulationROG(self, i):
         print("\nRain time: ", self.rain['Time'].iloc[i])
